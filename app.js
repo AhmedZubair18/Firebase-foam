@@ -19,26 +19,31 @@ const auth = getAuth(app)
 
 const email = document.getElementById("email")
 const passward = document.getElementById("passward")
-const singup = document.getElementById("singup")
+const signup = document.getElementById("signup")
 const login = document.getElementById("login")
 
 let saveEmail = ""
 let savePassward = ""
-let isSingup = false
+let isSignup = false
 let isLogin = false
 
-singup.addEventListener("click",() => {
+signup.addEventListener("click",() => {
   const emailValue = email.value
   const passwardValue = passward.value
 
   if (emailValue === "" || passwardValue === ""){
-    alert("Write email & passward")
-  }else{
+    alert("write email & passward")
+  }
+  else if (isSignup) {
+    alert("Already signed up with a different email.")}
+    else{
     alert("Singup successfully")
     saveEmail = emailValue;
     savePassward = passwardValue; 
     isLogin = false
-  }
+    isSignup = true
+  
+}
 })
 
 
@@ -56,14 +61,14 @@ login.addEventListener("click", () =>{
       }
   else{
     alert("login successfully")
-    isSingup = true
+    isSignup = true
     isLogin = true
 }}else{
   alert("Invalid email & passward")
 }
 })
 
-createUserWithEmailAndPassword(auth, email.value, passward.value,singup)
+createUserWithEmailAndPassword(auth, email.value, passward.value,signup)
 .then((res) => {
   alert(res);
  })
