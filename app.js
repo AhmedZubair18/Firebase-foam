@@ -22,12 +22,38 @@ const passward = document.getElementById("passward")
 const singup = document.getElementById("singup")
 const login = document.getElementById("login")
 
+let saveEmail = ""
+let savePassward = ""
+
 singup.addEventListener("click",() => {
-alert("singup successful")
+  const emailValue = email.value
+  const passwardValue = passward.value
+
+  if (emailValue === "" || passwardValue === ""){
+    alert("Write email & passward")
+  }else{
+    alert("Singup successfully")
+    saveEmail = emailValue;
+    savePassward = passwardValue; 
+  }
 })
+
+
+const isSingup = false
+
 login.addEventListener("click", () =>{
-  alert("login successful")
-})
+  const emailValue = email.value
+  const passwardValue = passward.value
+  if(emailValue === "" || passwardValue === ""){
+    alert("You haven't entered anything.")
+  }
+  else if(emailValue === saveEmail && passwardValue === savePassward){
+      alert("login successfully")
+  }else{
+    alert("Invalid email or passward")
+    isSingup = true
+}})
+
 createUserWithEmailAndPassword(auth, email.value, passward.value,singup)
 .then((res) => {
   alert(res);
