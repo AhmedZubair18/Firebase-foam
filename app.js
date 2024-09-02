@@ -45,7 +45,7 @@ login.addEventListener("click", () =>{
   const emailValue = email.value
   const passwardValue = passward.value
   if(emailValue === "" || passwardValue === ""){
-    alert("You haven't entered anything.")
+    alert("You haven't entered email & passward.")
   }
   else if(emailValue === saveEmail && passwardValue === savePassward){
       alert("login successfully")
