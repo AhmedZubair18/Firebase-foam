@@ -24,6 +24,8 @@ const login = document.getElementById("login")
 
 let saveEmail = ""
 let savePassward = ""
+let isSingup = false
+let isLogin = false
 
 singup.addEventListener("click",() => {
   const emailValue = email.value
@@ -35,11 +37,12 @@ singup.addEventListener("click",() => {
     alert("Singup successfully")
     saveEmail = emailValue;
     savePassward = passwardValue; 
+    isLogin = false
   }
 })
 
 
-const isSingup = false
+
 
 login.addEventListener("click", () =>{
   const emailValue = email.value
@@ -48,11 +51,17 @@ login.addEventListener("click", () =>{
     alert("You haven't entered email & passward.")
   }
   else if(emailValue === saveEmail && passwardValue === savePassward){
-      alert("login successfully")
-  }else{
-    alert("Invalid email or passward")
+      if(isLogin){
+        alert("already login")
+      }
+  else{
+    alert("login successfully")
     isSingup = true
-}})
+    isLogin = true
+}}else{
+  alert("Invalid email & passward")
+}
+})
 
 createUserWithEmailAndPassword(auth, email.value, passward.value,singup)
 .then((res) => {
